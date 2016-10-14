@@ -17,15 +17,15 @@ You can also skip the whole thing by git cloning this repository, running npm in
 ### *Build the server*
 version 1234
 
-1. Install123 the Heroku toolbelt from here https://toolbelt.heroku.com to launch, stop and monitor instances. Sign up for free at https://www.heroku.com if you don't have an account yet.
+1. Install1234 the Heroku toolbelt from here https://toolbelt.heroku.com to launch, stop and monitor instances. Sign up for free at https://www.heroku.com if you don't have an account yet.
 
-2. Install123 Node from here https://nodejs.org, this will be the server environment. Then open up Terminal or Command Line Prompt and make sure you've got the very most recent version of npm by installing it again:
+2. Install1234 Node from here https://nodejs.org, this will be the server environment. Then open up Terminal or Command Line Prompt and make sure you've got the very most recent version of npm by installing it again:
 
     ```
     sudo npm install npm -g
     ```
 
-3. Create123 a new folder somewhere and let's create a new Node project. Hit Enter to accept the defaults.
+3. Create1234 a new folder somewhere and let's create a new Node project. Hit Enter to accept the defaults.
 
     ```
     npm init
