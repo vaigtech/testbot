@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.0')
+	res.send('hello world i am a super secret bot 1.001')
 })
 
 // for facebook verification
@@ -93,7 +93,6 @@ function sendImageMessage(recipientId) {
       }
     }
   };
-
   callSendAPI(messageData);
 }
 function sendGenericMessage(sender) {
