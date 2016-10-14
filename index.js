@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.7')
+	res.send('hello world i am a super secret bot 1.8')
 })
 
 // for facebook verification
@@ -51,12 +51,11 @@ app.post('/webhook/', function (req, res) {
 				case 'video':
 				    sendVideoMessage(senderID);
 				    break;
-			  case 'quick reply':
-				sendQuickReply(senderID);
-				break;        
-
-			  case 'read receipt':
-				sendReadReceipt(senderID);
+			    case 'quick reply':
+				    sendQuickReply(senderID);
+				break;
+			    case 'read receipt':
+				    sendReadReceipt(senderID);
 				break;     
 /*
 			  case 'gif':
