@@ -339,7 +339,7 @@ function sendVideoMessage(recipientId) {
       attachment: {
         type: "video",
         payload: {
-          url: SERVER_URL + "http://www.yerevansky.com/img/content/steakfooter-small.mp4"
+          url: "http://www.yerevansky.com/img/content/steakfooter-small.mp4"
         }
       }
     }
