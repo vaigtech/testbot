@@ -28,12 +28,12 @@ app.get('/webhook/', function (req, res) {
 
 // to post data
 app.post('/webhook/', function (req, res) {
-	let messaging_events = req.body.entry[0].messaging
-	for (let i = 0; i < messaging_events.length; i++) {
-		let event = req.body.entry[0].messaging[i]
-		let sender = event.sender.id
+	var messaging_events = req.body.entry[0].messaging
+	for (var i = 0; i < messaging_events.length; i++) {
+		var event = req.body.entry[0].messaging[i]
+		var sender = event.sender.id
 		if (event.message && event.message.text) {
-			let text = event.message.text
+			var text = event.message.text
 
 			if (text === 'image') {
 		        sendImageMessage(sender);
@@ -47,7 +47,7 @@ app.post('/webhook/', function (req, res) {
 			}
 		}
 		if (event.postback) {
-			let text = JSON.stringify(event.postback)
+			var text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
 			continue
 		}
@@ -61,7 +61,7 @@ app.post('/webhook/', function (req, res) {
 const token = "EAAZA5Ok6jfyEBACRmj76fiTRLwwlCnJUQLHPbEFdlcfRZA6k6FE2uKeppJhNefV4hit8cNKVLhPz32dG3yVBAmMXukZA9hxhZBUlOd1D6waDcKZACQ6s9AnJ9sZBTum0fVZBtsszSE7sxgzYtcF09pZC6cuSzNK6APHg4qhcwSb5IAZDZD"
 
 function sendTextMessage(sender, text) {
-	let messageData = { text:text }
+	var messageData = { text:text }
 	
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -96,7 +96,7 @@ function sendImageMessage(recipientId) {
   callSendAPI(messageData);
 }
 function sendGenericMessage(sender) {
-	let messageData = {
+	var messageData = {
 		"attachment": {
 			"type": "template",
 			"payload": {
