@@ -36,7 +36,7 @@ app.post('/webhook/', function (req, res) {
 			let text = event.message.text
 			if (text === 'image') {
 		        sendImageMessage(sender);
-			}elseif (text === 'Generic') {
+			}else if (text === 'Generic') {
 				sendGenericMessage(sender)
 				continue
 			}else{
