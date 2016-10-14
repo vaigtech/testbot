@@ -25,7 +25,7 @@ version 123456
     sudo npm install npm -g
     ```
 
-3. Create123456 a new folder somewhere and let's create a new Node project. Hit Enter to accept the defaults.
+3. Create1234567 a new folder somewhere and let's create a new Node project. Hit Enter to accept the defaults.
 
     ```
     npm init
