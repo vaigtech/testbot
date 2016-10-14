@@ -40,6 +40,12 @@ app.post('/webhook/', function (req, res) {
 				  case 'image':
 					sendImageMessage(senderID);
 					break;
+				  case 'button':
+					sendButtonMessage(senderID);
+					break;
+				  case 'generic':
+					sendGenericMessage(senderID);
+					break;
 /*				  case 'gif':
 					sendGifMessage(senderID);
 					break;
@@ -55,15 +61,6 @@ app.post('/webhook/', function (req, res) {
 				  case 'file':
 					sendFileMessage(senderID);
 					break;
-*/
-				  case 'button':
-					sendButtonMessage(senderID);
-					break;
-
-				  case 'generic':
-					sendGenericMessage(senderID);
-					break;
-/*
 				  case 'receipt':
 					sendReceiptMessage(senderID);
 					break;
