@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.5')
+	res.send('hello world i am a super secret bot 1.6')
 })
 
 // for facebook verification
@@ -45,17 +45,19 @@ app.post('/webhook/', function (req, res) {
                 case 'receipt':
                     sendReceiptMessage(senderID);
                     break;
+                case 'audio':
+                    sendAudioMessage(senderID);
+                    break;
+				case 'video':
+				    sendVideoMessage(senderID);
+				    break;
 /*
 			  case 'gif':
 				sendGifMessage(senderID);
 				break;
-			  case 'audio':
-				sendAudioMessage(senderID);
-				break;
 
-			  case 'video':
-				sendVideoMessage(senderID);
-				break;
+
+
 
 			  case 'file':
 				sendFileMessage(senderID);
@@ -304,6 +306,40 @@ function sendReceiptMessage(recipientId) {
             name: "$100 Off Coupon",
             amount: -100
           }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+function sendAudioMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "audio",
+        payload: {
+          url: "http://www.hubharp.com/web_sound/BachGavotteShort.mp3"
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+function sendVideoMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "video",
+        payload: {
+          url: SERVER_URL + "http://www.yerevansky.com/img/content/steakfooter-small.mp4"
         }
       }
     }
