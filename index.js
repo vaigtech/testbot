@@ -34,7 +34,7 @@ app.post('/webhook/', function (req, res) {
 		let senderID = event.sender.id
 		if (event.message && event.message.text) {
 			let messageText = event.message.text
-			
+/*						
 			if (messageText) {
 				switch (messageText) {
 				  case 'image':
@@ -46,7 +46,8 @@ app.post('/webhook/', function (req, res) {
 				  case 'generic':
 					sendGenericMessage(senderID);
 					break;
-/*				  case 'gif':
+
+				case 'gif':
 					sendGifMessage(senderID);
 					break;
 
@@ -84,11 +85,12 @@ app.post('/webhook/', function (req, res) {
 				  case 'account linking':
 					sendAccountLinking(senderID);
 					break;
-*/
+
 				  default:
-					sendTextMessage(senderID, "Text received, echo: "+messageText);
+					sendTextMessage(senderID, "Text received, echo: " + messageText);
 				}
 		}
+*/
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
 			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
