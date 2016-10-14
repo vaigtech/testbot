@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.10')
+	res.send('hello world i am a super secret bot 1.11')
 })
 
 // for facebook verification
@@ -62,7 +62,7 @@ app.post('/webhook/', function (req, res) {
 					break;
 				case 'typing on':
 					sendTypingOn(senderID);
-					break;        
+					break;       
 
 				case 'typing off':
 					sendTypingOff(senderID);
@@ -70,25 +70,17 @@ app.post('/webhook/', function (req, res) {
 				case 'account_linking':
 					sendAccountLinking(senderID);
 					break;
+				  case 'generic1':
+					sendGenericMessage1(senderID);
+					break;
+				  case 'generic':
+					sendGenericMessage(senderID);
+					break;
 
 /*
 			  case 'gif':
 				sendGifMessage(senderID);
 				break;
-
-
-
-
-
-
-			  case 'generic':
-				sendGenericMessage(senderID);
-				break;
-
-
-
-   
-
 
 */
 			  default:
@@ -459,6 +451,52 @@ function sendTypingOff(recipientId) {
     },
     sender_action: "typing_off"
   };
+
+  callSendAPI(messageData);
+}
+function sendGenericMessage1(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: "rift",
+            subtitle: "Next-generation virtual reality",
+            item_url: "https://www.oculus.com/en-us/rift/",               
+            image_url: SERVER_URL + "/assets/rift.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://www.oculus.com/en-us/rift/",
+              title: "Open Web URL"
+            }, {
+              type: "postback",
+              title: "Call Postback",
+              payload: "Payload for first bubble",
+            }],
+          }, {
+            title: "touch",
+            subtitle: "Your Hands, Now in VR",
+            item_url: "https://www.oculus.com/en-us/touch/",               
+            image_url: SERVER_URL + "/assets/touch.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://www.oculus.com/en-us/touch/",
+              title: "Open Web URL"
+            }, {
+              type: "postback",
+              title: "Call Postback",
+              payload: "Payload for second bubble",
+            }]
+          }]
+        }
+      }
+    }
+  };  
 
   callSendAPI(messageData);
 }
