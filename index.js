@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot12345678')
+	res.send('hello world i am a super secret bot123456789')
 })
 
 // for facebook verification
@@ -59,7 +59,6 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAZA5Ok6jfyEBACRmj76fiTRLwwlCnJUQLHPbEFdlcfRZA6k6FE2uKeppJhNefV4hit8cNKVLhPz32dG3yVBAmMXukZA9hxhZBUlOd1D6waDcKZACQ6s9AnJ9sZBTum0fVZBtsszSE7sxgzYtcF09pZC6cuSzNK6APHg4qhcwSb5IAZDZD"
-const SERVER_URL = 'https://testbot1000.herokuapp.com/';
 
 function sendTextMessage(sender, text) {
 	let messageData = { text:text }
