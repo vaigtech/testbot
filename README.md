@@ -24,7 +24,7 @@ You can also skip the whole thing by git cloning this repository, running npm in
     sudo npm install npm -g
     ```
 
-3. Create a new folder somewhere and let's create a new Node project. Hit Enter to accept the defaults.
+3. Create123 a new folder somewhere and let's create a new Node project. Hit Enter to accept the defaults.
 
     ```
     npm init
