@@ -31,20 +31,66 @@ app.post('/webhook/', function (req, res) {
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
-		let sender = event.sender.id
+		let senderID = event.sender.id
 		if (event.message && event.message.text) {
-			let text = event.message.text
+			let messageText = event.message.text
+			
+			if (messageText) {
+				switch (messageText) {
+				  case 'image':
+					sendImageMessage(senderID);
+					break;
+/*				  case 'gif':
+					sendGifMessage(senderID);
+					break;
 
-			if (text === 'image') {
-		        sendImageMessage(sender);
-			}else if (text === 'button') {
-		        sendButtonMessage(sender);      
-			}else if (text === 'Generic') {
-				sendGenericMessage(sender)
-				continue
-			}else{
-				sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-			}
+				  case 'audio':
+					sendAudioMessage(senderID);
+					break;
+
+				  case 'video':
+					sendVideoMessage(senderID);
+					break;
+
+				  case 'file':
+					sendFileMessage(senderID);
+					break;
+*/
+				  case 'button':
+					sendButtonMessage(senderID);
+					break;
+
+				  case 'generic':
+					sendGenericMessage(senderID);
+					break;
+/*
+				  case 'receipt':
+					sendReceiptMessage(senderID);
+					break;
+
+				  case 'quick reply':
+					sendQuickReply(senderID);
+					break;        
+
+				  case 'read receipt':
+					sendReadReceipt(senderID);
+					break;        
+
+				  case 'typing on':
+					sendTypingOn(senderID);
+					break;        
+
+				  case 'typing off':
+					sendTypingOff(senderID);
+					break;        
+
+				  case 'account linking':
+					sendAccountLinking(senderID);
+					break;
+*/
+				  default:
+					sendTextMessage(senderID, "Text received, echo: "+messageText);
+				}
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
@@ -60,42 +106,7 @@ app.post('/webhook/', function (req, res) {
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAZA5Ok6jfyEBACRmj76fiTRLwwlCnJUQLHPbEFdlcfRZA6k6FE2uKeppJhNefV4hit8cNKVLhPz32dG3yVBAmMXukZA9hxhZBUlOd1D6waDcKZACQ6s9AnJ9sZBTum0fVZBtsszSE7sxgzYtcF09pZC6cuSzNK6APHg4qhcwSb5IAZDZD"
 
-function sendTextMessage(sender, text) {
-	let messageData = { text:text }
-	
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
-}
-function sendImageMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "image",
-        payload: {
-          url: "https://media4.giphy.com/media/11PEptfDmR4vjW/200_s.gif"
-        }
-      }
-    }
-  };
 
-  callSendAPI(messageData);
-}
 function sendGenericMessage(sender) {
 	let messageData = {
 		"attachment": {
@@ -149,6 +160,9 @@ function sendGenericMessage(sender) {
 app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
 })
+/*
+--------------------------------------------------------------------
+*/
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
@@ -173,6 +187,9 @@ function callSendAPI(messageData) {
     }
   });  
 }
+/*
+---------------------------------- functions --------------------
+*/
 function sendButtonMessage(recipientId) {
   var messageData = {
     recipient: {
@@ -201,6 +218,41 @@ function sendButtonMessage(recipientId) {
       }
     }
   };  
+  callSendAPI(messageData);
+}
+function sendTextMessage(sender, text) {
+	let messageData = { text:text }
+	
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+function sendImageMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "image",
+        payload: {
+          url: "https://media4.giphy.com/media/11PEptfDmR4vjW/200_s.gif"
+        }
+      }
+    }
+  };
 
   callSendAPI(messageData);
 }
