@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.9')
+	res.send('hello world i am a super secret bot 1.10')
 })
 
 // for facebook verification
@@ -60,6 +60,16 @@ app.post('/webhook/', function (req, res) {
 				case 'file':
 					sendFileMessage(senderID);
 					break;
+				case 'typing on':
+					sendTypingOn(senderID);
+					break;        
+
+				case 'typing off':
+					sendTypingOff(senderID);
+					break; 
+				case 'account_linking':
+					sendAccountLinking(senderID);
+					break;
 
 /*
 			  case 'gif':
@@ -79,17 +89,7 @@ app.post('/webhook/', function (req, res) {
 
    
 
-			  case 'typing on':
-				sendTypingOn(senderID);
-				break;        
 
-			  case 'typing off':
-				sendTypingOff(senderID);
-				break;        
-
-			  case 'account linking':
-				sendAccountLinking(senderID);
-				break;
 */
 			  default:
 				sendTextMessage(senderID,  "Text received, echo: "+messageText);
@@ -407,6 +407,57 @@ function sendFileMessage(recipientId) {
         }
       }
     }
+  };
+
+  callSendAPI(messageData);
+}
+function sendAccountLinking(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Welcome. Link your account.",
+          buttons:[{
+            type: "account_link",
+            url: "http://www.yahoo.com"
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
+}
+function sendTypingOn(recipientId) {
+  console.log("Turning typing indicator on");
+
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    sender_action: "typing_on"
+  };
+
+  callSendAPI(messageData);
+}
+
+/*
+ * Turn typing indicator off
+ *
+ */
+function sendTypingOff(recipientId) {
+  console.log("Turning typing indicator off");
+
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    sender_action: "typing_off"
   };
 
   callSendAPI(messageData);
