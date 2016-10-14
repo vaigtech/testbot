@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.1001')
+	res.send('hello world i am a super secret bot 1.0001')
 })
 
 // for facebook verification
@@ -39,13 +39,13 @@ app.post('/webhook/', function (req, res) {
 			  case 'image':
 				sendImageMessage(senderID);
 				break;
-			  case 'gif':
-				sendGifMessage(senderID);
-				break;
 			  case 'button':
 				sendButtonMessage(senderID);
 				break;
 /*
+			  case 'gif':
+				sendGifMessage(senderID);
+				break;
 			  case 'audio':
 				sendAudioMessage(senderID);
 				break;
