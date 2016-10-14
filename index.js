@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot')
+	res.send('hello world i am a super secret bot1')
 })
 
 // for facebook verification
@@ -144,7 +144,7 @@ function sendImageMessage(recipientId) {
       attachment: {
         type: "image",
         payload: {
-          url: SERVER_URL + "/Demo.gif"
+          url: "https://media4.giphy.com/media/11PEptfDmR4vjW/200_s.gif"
         }
       }
     }
