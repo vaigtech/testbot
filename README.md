@@ -15,7 +15,7 @@ Messenger bots uses a web server to process messages it receives or to figure ou
 You can also skip the whole thing by git cloning this repository, running npm install, and run a server somewhere.
 
 ### *Build the server*
-version 1.0
+version 1.0777
 
 1. Install12345678 the Heroku toolbelt from here https://toolbelt.heroku.com to launch, stop and monitor instances. Sign up for free at https://www.heroku.com if you don't have an account yet.
 
