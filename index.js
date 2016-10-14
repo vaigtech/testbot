@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.10')
+	res.send('hello world i am a super secret bot 1.1001')
 })
 
 // for facebook verification
@@ -31,10 +31,66 @@ app.post('/webhook/', function (req, res) {
 	var messaging_events = req.body.entry[0].messaging
 	for (var i = 0; i < messaging_events.length; i++) {
 		var event = req.body.entry[0].messaging[i]
-		var sender = event.sender.id
+		var senderID = event.sender.id
 		if (event.message && event.message.text) {
-			var text = event.message.text
+			var messageText  = event.message.text
 
+			switch (messageText) {
+			  case 'image':
+				sendImageMessage(senderID);
+				break;
+			  case 'gif':
+				sendGifMessage(senderID);
+				break;
+			  case 'button':
+				sendButtonMessage(senderID);
+				break;
+/*
+			  case 'audio':
+				sendAudioMessage(senderID);
+				break;
+
+			  case 'video':
+				sendVideoMessage(senderID);
+				break;
+
+			  case 'file':
+				sendFileMessage(senderID);
+				break;
+
+
+			  case 'generic':
+				sendGenericMessage(senderID);
+				break;
+
+			  case 'receipt':
+				sendReceiptMessage(senderID);
+				break;
+
+			  case 'quick reply':
+				sendQuickReply(senderID);
+				break;        
+
+			  case 'read receipt':
+				sendReadReceipt(senderID);
+				break;        
+
+			  case 'typing on':
+				sendTypingOn(senderID);
+				break;        
+
+			  case 'typing off':
+				sendTypingOff(senderID);
+				break;        
+
+			  case 'account linking':
+				sendAccountLinking(senderID);
+				break;
+*/
+			  default:
+				sendTextMessage(senderID, messageText);
+			}
+/*
 			if (text === 'image') {
 		        sendImageMessage(sender);
 			}else if (text === 'button') {
@@ -45,6 +101,7 @@ app.post('/webhook/', function (req, res) {
 			}else{
 				sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 			}
+*/
 		}
 		if (event.postback) {
 			var text = JSON.stringify(event.postback)
