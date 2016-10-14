@@ -274,14 +274,14 @@ function sendReceiptMessage(recipientId) {
             quantity: 1,
             price: 599.00,
             currency: "USD",
-            image_url: SERVER_URL + "/demo/Demo.gif"
+            image_url:  "http://cdn2.gsmarena.com/vv/bigpic/samsung-galaxy-j7-2016.jpg"
           }, {
             title: "Samsung Gear VR",
             subtitle: "Frost White",
             quantity: 1,
             price: 99.99,
             currency: "USD",
-            image_url: SERVER_URL + "/demo/shot5.jpg"
+            image_url: "http://i-cdn.phonearena.com/images/phones/62133-specs/Samsung-Galaxy-S7-active.jpg"
           }],
           address: {
             street_1: "1 Hacker Way",
