@@ -34,11 +34,14 @@ app.post('/webhook/', function (req, res) {
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text
-			if (text === 'Generic') {
+			if (text === 'image') {
+		        sendImageMessage(sender);
+			}elseif (text === 'Generic') {
 				sendGenericMessage(sender)
 				continue
+			}else{
+				sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 			}
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
@@ -53,6 +56,7 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAZA5Ok6jfyEBACRmj76fiTRLwwlCnJUQLHPbEFdlcfRZA6k6FE2uKeppJhNefV4hit8cNKVLhPz32dG3yVBAmMXukZA9hxhZBUlOd1D6waDcKZACQ6s9AnJ9sZBTum0fVZBtsszSE7sxgzYtcF09pZC6cuSzNK6APHg4qhcwSb5IAZDZD"
+const SERVER_URL = 'https://testbot1000.herokuapp.com/';
 
 function sendTextMessage(sender, text) {
 	let messageData = { text:text }
@@ -127,3 +131,24 @@ function sendGenericMessage(sender) {
 app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
 })
+/*
+ * Send an image using the Send API.
+ *
+ */
+function sendImageMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "image",
+        payload: {
+          url: SERVER_URL + "/Demo.gif"
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
