@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.8')
+	res.send('hello world i am a super secret bot 1.9')
 })
 
 // for facebook verification
@@ -51,12 +51,16 @@ app.post('/webhook/', function (req, res) {
 				case 'video':
 				    sendVideoMessage(senderID);
 				    break;
-			    case 'quick reply':
+			    case 'quick_reply':
 				    sendQuickReply(senderID);
-				break;
-			    case 'read receipt':
+					break;
+			    case 'read_receipt':
 				    sendReadReceipt(senderID);
-				break;     
+					break;     
+				case 'file':
+					sendFileMessage(senderID);
+					break;
+
 /*
 			  case 'gif':
 				sendGifMessage(senderID);
@@ -65,9 +69,6 @@ app.post('/webhook/', function (req, res) {
 
 
 
-			  case 'file':
-				sendFileMessage(senderID);
-				break;
 
 
 			  case 'generic':
@@ -339,7 +340,7 @@ function sendVideoMessage(recipientId) {
       attachment: {
         type: "video",
         payload: {
-          url: "http://www.yerevansky.com/img/content/steakfooter-small.mp4"
+          url: "http://techslides.com/demos/sample-videos/small.mp4"
         }
       }
     }
@@ -389,6 +390,23 @@ function sendReadReceipt(recipientId) {
       id: recipientId
     },
     sender_action: "mark_seen"
+  };
+
+  callSendAPI(messageData);
+}
+function sendFileMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "file",
+        payload: {
+          url: "http://www.robotstxt.org/robots.txt"
+        }
+      }
+    }
   };
 
   callSendAPI(messageData);
