@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.2')
+	res.send('hello world i am a super secret bot 1.4')
 })
 
 // for facebook verification
@@ -36,15 +36,15 @@ app.post('/webhook/', function (req, res) {
 			var messageText  = event.message.text
 
 			switch (messageText) {
-			  case 'image':
-				sendImageMessage(senderID);
-				break;
-			  case 'button':
-				sendButtonMessage(senderID);
-				break;
-				case 'receipt':
-				sendReceiptMessage(senderID);
-				break;
+                case 'image':
+                    sendImageMessage(senderID);
+                    break;
+                case 'button':
+                    sendButtonMessage(senderID);
+                    break;
+                case 'receipt':
+                    sendReceiptMessage(senderID);
+                    break;
 /*
 			  case 'gif':
 				sendGifMessage(senderID);
@@ -106,7 +106,7 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAAZA5Ok6jfyEBACRmj76fiTRLwwlCnJUQLHPbEFdlcfRZA6k6FE2uKeppJhNefV4hit8cNKVLhPz32dG3yVBAmMXukZA9hxhZBUlOd1D6waDcKZACQ6s9AnJ9sZBTum0fVZBtsszSE7sxgzYtcF09pZC6cuSzNK6APHg4qhcwSb5IAZDZD"
-
+const SERVER_URL = '';
 function sendTextMessage(sender, text) {
 	var messageData = { text:text }
 	
@@ -274,14 +274,14 @@ function sendReceiptMessage(recipientId) {
             quantity: 1,
             price: 599.00,
             currency: "USD",
-            image_url: SERVER_URL + "/assets/riftsq.png"
+            image_url: SERVER_URL + "/demo/Demo.gif"
           }, {
             title: "Samsung Gear VR",
             subtitle: "Frost White",
             quantity: 1,
             price: 99.99,
             currency: "USD",
-            image_url: SERVER_URL + "/assets/gearvrsq.png"
+            image_url: SERVER_URL + "/demo/shot5.jpg"
           }],
           address: {
             street_1: "1 Hacker Way",
