@@ -59,7 +59,6 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
 /*
  * Use your own validation token. Check that the token used in the Webhook 
  * setup is the same token used here.
- *
  */
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
@@ -190,6 +189,7 @@ function receivedAuthentication(event) {
   // authentication callback with the 'Send to Messenger' click event. This is
   // a way to do account linking when the user clicks the 'Send to Messenger' 
   // plugin.
+ 
   var passThroughParam = event.optin.ref;
 
   console.log("Received authentication for user %d and page %d with pass " +
@@ -203,8 +203,7 @@ function receivedAuthentication(event) {
 
 /*
  * Message Event
- *
- * This event is called when a message is sent to your page. The 'message' 
+  * This event is called when a message is sent to your page. The 'message' 
  * object format can vary depending on the kind of message that was received.
  * Read more at https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-received
  *
