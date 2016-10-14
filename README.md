@@ -15,17 +15,17 @@ Messenger bots uses a web server to process messages it receives or to figure ou
 You can also skip the whole thing by git cloning this repository, running npm install, and run a server somewhere.
 
 ### *Build the server*
-version 12345
+version 123456
 
-1. Install12345 the Heroku toolbelt from here https://toolbelt.heroku.com to launch, stop and monitor instances. Sign up for free at https://www.heroku.com if you don't have an account yet.
+1. Install123456 the Heroku toolbelt from here https://toolbelt.heroku.com to launch, stop and monitor instances. Sign up for free at https://www.heroku.com if you don't have an account yet.
 
-2. Install12345 Node from here https://nodejs.org, this will be the server environment. Then open up Terminal or Command Line Prompt and make sure you've got the very most recent version of npm by installing it again:
+2. Install123456 Node from here https://nodejs.org, this will be the server environment. Then open up Terminal or Command Line Prompt and make sure you've got the very most recent version of npm by installing it again:
 
     ```
     sudo npm install npm -g
     ```
 
-3. Create12345 a new folder somewhere and let's create a new Node project. Hit Enter to accept the defaults.
+3. Create123456 a new folder somewhere and let's create a new Node project. Hit Enter to accept the defaults.
 
     ```
     npm init
