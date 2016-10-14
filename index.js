@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.11')
+	res.send('hello world i am a super secret bot 1.110')
 })
 
 // for facebook verification
@@ -468,7 +468,7 @@ function sendGenericMessage1(recipientId) {
             title: "rift",
             subtitle: "Next-generation virtual reality",
             item_url: "https://www.oculus.com/en-us/rift/",               
-            image_url: SERVER_URL + "/assets/rift.png",
+            image_url: "http://messengerdemo.parseapp.com/img/rift.png",
             buttons: [{
               type: "web_url",
               url: "https://www.oculus.com/en-us/rift/",
@@ -482,7 +482,7 @@ function sendGenericMessage1(recipientId) {
             title: "touch",
             subtitle: "Your Hands, Now in VR",
             item_url: "https://www.oculus.com/en-us/touch/",               
-            image_url: SERVER_URL + "/assets/touch.png",
+            image_url: "http://messengerdemo.parseapp.com/img/gearvr.png",
             buttons: [{
               type: "web_url",
               url: "https://www.oculus.com/en-us/touch/",
