@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot1')
+	res.send('hello world i am a super secret bot123')
 })
 
 // for facebook verification
@@ -77,7 +77,23 @@ function sendTextMessage(sender, text) {
 		}
 	})
 }
+function sendImageMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "image",
+        payload: {
+          url: "https://media4.giphy.com/media/11PEptfDmR4vjW/200_s.gif"
+        }
+      }
+    }
+  };
 
+  callSendAPI(messageData);
+}
 function sendGenericMessage(sender) {
 	let messageData = {
 		"attachment": {
@@ -131,24 +147,27 @@ function sendGenericMessage(sender) {
 app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
 })
-/*
- * Send an image using the Send API.
- *
- */
-function sendImageMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "image",
-        payload: {
-          url: "https://media4.giphy.com/media/11PEptfDmR4vjW/200_s.gif"
-        }
-      }
-    }
-  };
+function callSendAPI(messageData) {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: PAGE_ACCESS_TOKEN },
+    method: 'POST',
+    json: messageData
 
-  callSendAPI(messageData);
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+
+      if (messageId) {
+        console.log("Successfully sent message with id %s to recipient %s", 
+          messageId, recipientId);
+      } else {
+      console.log("Successfully called Send API for recipient %s", 
+        recipientId);
+      }
+    } else {
+      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+    }
+  });  
 }
