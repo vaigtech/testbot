@@ -17,10 +17,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 // parse application/json
 app.use(bodyParser.json())
-
+var now = new Date();
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.5')
+	res.send('hello world i am a super secret bot 1.5 '+now)
 })
 
 // for facebook verification
