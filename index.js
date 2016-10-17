@@ -5,6 +5,11 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 
+const token = "EAAZA5Ok6jfyEBAFY9WltZBbSiY5I4nzN9a5GJQqela9j0ZCC9DmnORS2ZB1yZCICA1TTlRssE75mb37AUQIWXOeXmdpnw08FW5Bj9FL7duMZCAFKMNP5hHqWXMqttAuQGZBCXPxbO0GnD1WsDhmYWmQG2Waqo5xKdQ8LZBadewVjqAZDZD"
+//const token = "EAAZA5Ok6jfyEBADt9EX4AWWjj7E7QWKeVCrHbtk7Cv7uYAVgCekdUPOkSMq0Vzmwl0XxJWSZCD5z7vEq3hhVAPKyqBksUW6bqtZA5Q70ZBOYZCHQZBWKHs9PKSRuvPZBE0QssyZAwXxpZBXAjUfxoMg4Sf9JAM0LFCCyZBGMpYruOLHAZDZD"
+const SERVER_URL = '';
+
+
 app.set('port', (process.env.PORT || 5000))
 
 // parse application/x-www-form-urlencoded
@@ -100,8 +105,6 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
-const token = "EAAZA5Ok6jfyEBADt9EX4AWWjj7E7QWKeVCrHbtk7Cv7uYAVgCekdUPOkSMq0Vzmwl0XxJWSZCD5z7vEq3hhVAPKyqBksUW6bqtZA5Q70ZBOYZCHQZBWKHs9PKSRuvPZBE0QssyZAwXxpZBXAjUfxoMg4Sf9JAM0LFCCyZBGMpYruOLHAZDZD"
-const SERVER_URL = '';
 function sendTextMessage(sender, text) {
 	var messageData = { text:text }
 	
