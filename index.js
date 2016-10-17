@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.4')
+	res.send('hello world i am a super secret bot 1.5')
 })
 
 // for facebook verification
@@ -100,7 +100,7 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
-const token = "EAAZA5Ok6jfyEBAI2glU4ZCHM8rZCSTIR7T2lkZAMvjRmgsrgyA9RZBQ8Yejcr8kXHlw548XS4CYZBZBHXqqLwKQSkAZAWaJDZAXAQk5WJch2nZADe9Bg5ZA1XeEZAzzZBoqZCupdiw9HIwTTFF6FcPZAyPzAQlpDQexd6oFbbGbiGUpkSvXxgZDZD"
+const token = "EAAZA5Ok6jfyEBADt9EX4AWWjj7E7QWKeVCrHbtk7Cv7uYAVgCekdUPOkSMq0Vzmwl0XxJWSZCD5z7vEq3hhVAPKyqBksUW6bqtZA5Q70ZBOYZCHQZBWKHs9PKSRuvPZBE0QssyZAwXxpZBXAjUfxoMg4Sf9JAM0LFCCyZBGMpYruOLHAZDZD"
 const SERVER_URL = '';
 function sendTextMessage(sender, text) {
 	var messageData = { text:text }
