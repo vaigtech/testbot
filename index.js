@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 var now = new Date();
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.5 '+now)
+	res.send('hello world i am a super secret bot 1.6 '+now)
 })
 
 // for facebook verification
