@@ -103,6 +103,7 @@ app.post('/webhook/', function (req, res) {
 	res.sendStatus(200)
 })
 setGreetingText();
+persistentMenu();
 
 
 // recommended to inject access tokens as environmental variables, e.g.
@@ -431,6 +432,33 @@ function setGreetingText() {
         greeting:{
             text:" Hello  Timeless apparel for the masses."
         }
+    };
+
+    callSendAPI(messageData);
+}
+function persistentMenu() {
+    console.log("set Greeting Text");
+
+    var messageData = {
+        setting_type: "call_to_actions",
+        thread_state : "existing_thread",
+        call_to_actions:[
+            {
+                type:"postback",
+                title:"FAQ",
+                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_HELP"
+            },
+            {
+                type:"postback",
+                title:"I Prodotti in offerta",
+                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_HELP"
+            },
+            {
+                type:"web_url",
+                title:"View Website",
+                url:"https://google.com/"
+            }
+        ]
     };
 
     callSendAPI(messageData);
