@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 var now = new Date();
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a super secret bot 1.6 '+now)
+	res.send('hello world i am a super secret bot 1.7 '+now)
 })
 
 // for facebook verification
@@ -30,7 +30,6 @@ app.get('/webhook/', function (req, res) {
 	}
 	res.send('Error, wrong token')
 })
-setGreetingText();
 // to post data
 app.post('/webhook/', function (req, res) {
 	var messaging_events = req.body.entry[0].messaging
@@ -80,6 +79,9 @@ app.post('/webhook/', function (req, res) {
 				  case 'generic':
 					sendGenericMessage(senderID);
 					break;
+				  case 'setGreetingText':
+                      setGreetingText();
+					break;
 
 /*
 			  case 'gif':
@@ -100,6 +102,7 @@ app.post('/webhook/', function (req, res) {
 	}
 	res.sendStatus(200)
 })
+setGreetingText();
 
 
 // recommended to inject access tokens as environmental variables, e.g.
@@ -426,7 +429,7 @@ function setGreetingText() {
     var messageData = {
         setting_type: "greeting",
         greeting:{
-            "text":"Timeless apparel for the masses."
+            text:" Hello  Timeless apparel for the masses."
         }
     };
 
