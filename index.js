@@ -30,7 +30,7 @@ app.get('/webhook/', function (req, res) {
 	}
 	res.send('Error, wrong token')
 })
-
+setGreetingText();
 // to post data
 app.post('/webhook/', function (req, res) {
 	var messaging_events = req.body.entry[0].messaging
@@ -67,8 +67,7 @@ app.post('/webhook/', function (req, res) {
 					break;
 				case 'typing on':
 					sendTypingOn(senderID);
-					break;       
-
+					break;
 				case 'typing off':
 					sendTypingOff(senderID);
 					break; 
@@ -193,30 +192,6 @@ function sendGenericMessage(sender) {
 app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
 })
-function callSendAPI(messageData) {
-  request({
-    uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: token },
-    method: 'POST',
-    json: messageData
-
-  }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var recipientId = body.recipient_id;
-      var messageId = body.message_id;
-
-      if (messageId) {
-        console.log("Successfully sent message with id %s to recipient %s", 
-          messageId, recipientId);
-      } else {
-      console.log("Successfully called Send API for recipient %s", 
-        recipientId);
-      }
-    } else {
-      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-    }
-  });  
-}
 function sendButtonMessage(recipientId) {
   var messageData = {
     recipient: {
@@ -445,6 +420,19 @@ function sendTypingOn(recipientId) {
  * Turn typing indicator off
  *
  */
+function setGreetingText() {
+    console.log("set Greeting Text");
+
+    var messageData = {
+        setting_type: "greeting",
+        greeting:{
+            "text":"Timeless apparel for the masses."
+        }
+    };
+
+    callSendAPI(messageData);
+}
+
 function sendTypingOff(recipientId) {
   console.log("Turning typing indicator off");
 
@@ -502,4 +490,29 @@ function sendGenericMessage1(recipientId) {
   };  
 
   callSendAPI(messageData);
+}
+
+function callSendAPI(messageData) {
+    request({
+        uri: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: { access_token: token },
+        method: 'POST',
+        json: messageData
+
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var recipientId = body.recipient_id;
+            var messageId = body.message_id;
+
+            if (messageId) {
+                console.log("Successfully sent message with id %s to recipient %s",
+                    messageId, recipientId);
+            } else {
+                console.log("Successfully called Send API for recipient %s",
+                    recipientId);
+            }
+        } else {
+            console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+        }
+    });
 }
